@@ -3,9 +3,8 @@ stages:
 
 sync_git:
   stage: sync
-  image: $REGISTRYURL_IMAGES/alpine:latest
+  #image: $REGISTRYURL_IMAGES/gitlab/gitlab-runner-helper:latest
   script:
-    - apk add --no-cache git
     - git clone https://github.com/jahwag/gh2gl.git
     - cd gh2gl
     - git remote add gitlab $GITLAB_REPO_URL
