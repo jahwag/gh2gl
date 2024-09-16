@@ -5,7 +5,7 @@ sync_git:
   stage: sync
   image: $REGISTRYURL_IMAGES/gitlab/gitlab-runner-helper:x86_64-v16.3.0
   script:
-    - git clone https://github.com/jahwag/gh2gl.git
+    - git clone git@github.com:jahwag/gh2gl.git
     - cd gh2gl
     - git remote add gitlab $GITLAB_REPO_URL
     - git fetch origin
