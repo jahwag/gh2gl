@@ -13,5 +13,7 @@ sync_git:
     - git checkout master
     - git pull origin master
     - git push gitlab master
-  only:
-    - schedules
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: manual
