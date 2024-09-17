@@ -5,6 +5,7 @@ sync_git:
   stage: sync
   image: $REGISTRYURL_IMAGES/gitlab/gitlab-runner-helper:x86_64-v16.3.0
   script:
+    - mkdir -p ~/.ssh
     - touch ~/.ssh/config
     - echo -e "Host github.com\n    ProxyCommand        nc -X connect -x proxy.digg.se:8080 %h %p \n    Hostname ssh.github.com\n    Port 443\n    User git" >> ~/.ssh/config
     - git config --global http.proxy $GITLAB_PROXY_URL
