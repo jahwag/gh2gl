@@ -5,7 +5,7 @@ RUN apk update && \
         git \
         openssh-client \
         maven \
-        nc \
+        netcat \
         curl
 
 CMD ["/bin/sh"]
