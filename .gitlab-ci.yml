@@ -3,9 +3,8 @@ stages:
 
 sync_git:
   stage: sync
-  image: $REGISTRYURL_IMAGES/digg/java-runner:21.0.1
+  image: $REGISTRYURL_IMAGES/maven
   script:
-    - microdnf install ssh git
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
     - echo -e "Host github.com\n    ProxyCommand        nc -X connect -x proxy.digg.se:8080 %h %p \n    Hostname ssh.github.com\n    Port 443\n    User git" >> ~/.ssh/config
