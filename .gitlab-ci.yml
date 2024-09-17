@@ -3,15 +3,15 @@ stages:
 
 sync_git:
   stage: sync
-  image: $REGISTRYURL_IMAGES/maven
+  image: $REGISTRYURL_IMAGES/jahwag/gh2gl:latest
   script:
-    - export http_proxy="http://proxy.digg.se:8080"
-    - export https_proxy="http://proxy.digg.se:8080"
+    - export http_proxy="$GITLAB_PROXY_URL"
+    - export https_proxy="$GITLAB_PROXY_URL"
     - apt update
     - apt-get install nc
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
-    - echo -e "Host github.com\n    ProxyCommand        nc -X connect -x proxy.digg.se:8080 %h %p \n    Hostname ssh.github.com\n    Port 443\n    User git" >> ~/.ssh/config
+    - echo -e "Host github.com\n    ProxyCommand        nc -X connect -x $GITLAB_PROXY_URL %h %p \n    Hostname ssh.github.com\n    Port 443\n    User git" >> ~/.ssh/config
     - cat ~/.ssh/config
     - git config --global http.proxy $GITLAB_PROXY_URL
     - git clone git@github.com:jahwag/gh2gl.git
